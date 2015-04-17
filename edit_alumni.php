@@ -75,7 +75,7 @@
         <input type="text" class="form-control" name="email" id="email" value="<?php echo $email; ?>">
       </div>
       <div class="form-group">
-        <input type="submit" name="submit" value="Perbarui data" class="submit-button">
+        <input type="submit" name="submit" value="Perbarui data" class="btn btn-primary">
       </div>
     </form>
   </div><!-- @end #w -->

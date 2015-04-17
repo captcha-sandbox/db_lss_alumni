@@ -14,15 +14,52 @@
 </head>
 
 <body>  
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#w">Database LSS</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#tambah">Tambah Baru</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<nav class="mini_navbar navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#w">Database LSS</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#tambah">Tambah Baru</a></li>
+      </ul>
+      <form action="#w" class="navbar-form navbar-left" role="search" method="get">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Cari nama alumni..." name="nama">
+        </div>
+        <button type="submit" class="btn btn-primary">Go</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
   <div id="w">
     
-    <form action="" method="get" style="margin-bottom:20px">
+    <form action="#w" method="get" style="margin-bottom:20px">
       <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." name="nama">
+          <input type="text" class="form-control" placeholder="Cari nama alumni..." name="nama">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Go!</button>
+            <button class="btn btn-primary" type="submit">Go!</button>
           </span>
         </div><!-- /input-group -->
       </div><!-- /.col-lg-6 -->
@@ -114,8 +151,11 @@
         mysql_close();
       ?>
     </div><!-- @end #content -->
-
-    <h2>Tambahkan data baru</h2> 
+    <div id="tambah">
+      </br>
+      </br>
+      <h2>Tambahkan data baru</h2> 
+    </div>
     <form role="form" method="post" action="tambah_alumni.php">
       <div class="form-group">
         <label for="nama_lengkap">Nama Lengkap</label>
@@ -178,5 +218,31 @@ $(function(){
   });
 });
 </script>
+<script>
+  $(document).scroll(function () {
+    var y = $(this).scrollTop();   
+    if (y > 100) {
+        $('.mini_navbar').fadeIn();
+    } else {
+        $('.mini_navbar').fadeOut();
+    }
+  });
+  </script>
+  <script>
+  $(function() {
+    $('a[href*=#]:not([href=#],[href=#bio],[href=#settings])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+  </script>
 </body>
 </html>
