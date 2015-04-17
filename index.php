@@ -154,7 +154,7 @@
         <input type="text" class="form-control" name="email" id="email">
       </div>
       <div class="form-group">
-        <input type="submit" name="submit" value="Tambah Baru" class="submit-button">
+        <input type="submit" name="submit" value="Tambah Baru" class="btn btn-primary">
       </div>
     </form>
   </div><!-- @end #w -->

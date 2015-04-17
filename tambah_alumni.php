@@ -17,6 +17,7 @@
 		angkatan, alamat_tetap, alamat_bandung, no_telp, no_telp_lain, email)
 		VALUES ('$namaLengkap','$namaPanggilan', '$jurusan', '$angkatan', 
 		'$alamatTetap', '$alamatBandung','$noTelp','$noTelpLain','$email')";
+	
 	//run query
 	if (!mysql_query($query)) {
 	   die('Error: ' . mysql_error());
