@@ -3,20 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html">
-  <title>User Profile with Content Tabs - Design Shack Demo</title>
+  <title>Database Alumni - LSS ITB</title>
   <meta name="author" content="Jake Rocheleau">
 
   <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
   <link rel="icon" href="http://designshack.net/favicon.ico">
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="css/jquery-ui-1.9.2.custom.min.css" rel='stylesheet' type='text/css' />
   <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+
+  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+  <script>
+    $(function(){
+      $('#selectpicker').selectpicker({
+        style: 'btn-info',
+        size: 4
+      });
+    });
+  </script>
 
 </head>
 
 <body>  
   <div id="w">
     
-    <form action="" method="get"
+    <form action="" method="get" style="margin-bottom:20px">
       <div class="row">
       <div class="col-lg-6">
         <div class="input-group">
@@ -70,34 +83,70 @@
       </nav>
       
       <section id="bio">
-        <p>Various content snippets courtesy of <a href="http://bluthipsum.com/">Bluth Ipsum</a>.</p>
-        
-        <p>Can't a guy call his mother pretty without it seeming strange? Amen. I think that's one of Mom's little fibs, you know, like I'll sacrifice anything for my children.</p>
-        
-        <p>She's always got to wedge herself in the middle of us so that she can control everything. Yeah. Mom's awesome. I run a pretty tight ship around here. With a pool table.</p>
+      <p class="setting">Panggilan: <?php echo $panggilan; ?></p>
+      <p class="setting">Jurusan  : <?php echo $jurusan; ?></p>
+      <p class="setting">Angkatan : <?php echo $angkatan; ?></p>  
       </section>
             
       <section id="settings" class="hidden">
-        <p>Edit your user settings:</p>
+        <p>Edit detail info:</p>
         
-        <p class="setting"><span>E-mail Address <img src="images/edit.png" alt="*Edit*"></span> lolno@gmail.com</p>
+        <p class="setting"><span>Alamat Tetap <img src="images/edit.png" alt="*Edit*"></span><?php echo $alamat1; ?></p>
         
-        <p class="setting"><span>Language <img src="images/edit.png" alt="*Edit*"></span> English(US)</p>
+        <p class="setting"><span>Alamat Bandung <img src="images/edit.png" alt="*Edit*"></span><?php echo $alamat2; ?></p>
         
-        <p class="setting"><span>Profile Status <img src="images/edit.png" alt="*Edit*"></span> Public</p>
+        <p class="setting"><span>No Telepon <img src="images/edit.png" alt="*Edit*"></span><?php echo $telp1; ?></p>
         
-        <p class="setting"><span>Update Frequency <img src="images/edit.png" alt="*Edit*"></span> Weekly</p>
+        <p class="setting"><span>No Telepon Lain <img src="images/edit.png" alt="*Edit*"></span><?php echo $telp2; ?></p>
         
-        <p class="setting"><span>Connected Accounts <img src="images/edit.png" alt="*Edit*"></span> None</p>
+        <p class="setting"><span>Email <img src="images/edit.png" alt="*Edit*"></span><?php echo $email; ?></p>
       </section>
       <?php
         mysql_close();
       ?>
     </div><!-- @end #content -->
-  </div><!-- @end #w -->
 
-<script type="text/javascript" src="js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>  
+    <h2>Tambahkan data baru</h2> 
+    <form role="form">
+      <div class="form-group">
+        <label for="nama_lengkap">Nama Lengkap</label>
+        <input type="text" class="form-control" id="nama_lengkap">
+      </div>
+      <div class="form-group">
+        <label for="nama_panggilan">Panggilan</label>
+        <input type="text" class="form-control" id="nama_panggilan">
+      </div>
+      <div class="form-group">
+        <label for="jurusan">Jurusan</label>
+        <input type="text" class="form-control" id="jurusan">
+      </div>
+      <div class="form-group">
+        <label for="angkatan">Angkatan</label>
+        <input type="text" class="form-control" id="nama_panggilan">
+      </div>
+      <div class="form-group">
+        <label for="alamat_tetap">Alamat Tetap</label>
+        <input type="text" class="form-control" id="alamat_tetap">
+      </div>
+      <div class="form-group">
+        <label for="alamat_bandung">Alamat Bandung</label>
+        <input type="text" class="form-control" id="alamat_bandung">
+      </div>
+      <div class="form-group">
+        <label for="no_tlp">No Telepon</label>
+        <input type="text" class="form-control" id="no_tlp">
+      </div>
+      <div class="form-group">
+        <label for="no_tlp_lain">No Alternatif</label>
+        <input type="text" class="form-control" id="no_tlp_lain">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" id="email">
+      </div>
+
+  </div><!-- @end #w -->
+ 
 <script type="text/javascript">
 $(function(){
   $('#profiletabs ul li a').on('click', function(e){
@@ -115,5 +164,6 @@ $(function(){
   });
 });
 </script>
+});
 </body>
 </html>
