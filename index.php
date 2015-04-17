@@ -114,44 +114,47 @@
     </div><!-- @end #content -->
 
     <h2>Tambahkan data baru</h2> 
-    <form role="form">
+    <form role="form" method="post" action="tambah_alumni.php">
       <div class="form-group">
         <label for="nama_lengkap">Nama Lengkap</label>
-        <input type="text" class="form-control" id="nama_lengkap">
+        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
       </div>
       <div class="form-group">
         <label for="nama_panggilan">Panggilan</label>
-        <input type="text" class="form-control" id="nama_panggilan">
+        <input type="text" class="form-control" name="nama_panggilan" id="nama_panggilan">
       </div>
       <div class="form-group">
         <label for="jurusan">Jurusan</label>
-        <input type="text" class="form-control" id="jurusan">
+        <input type="text" class="form-control" name="jurusan" id="jurusan" required>
       </div>
       <div class="form-group">
         <label for="angkatan">Angkatan</label>
-        <input type="text" class="form-control" id="nama_panggilan">
+        <input type="text" class="form-control" name="angkatan" id="angkatan" required>
       </div>
       <div class="form-group">
         <label for="alamat_tetap">Alamat Tetap</label>
-        <input type="text" class="form-control" id="alamat_tetap">
+        <input type="text" class="form-control" name="alamat_tetap" id="alamat_tetap" required>
       </div>
       <div class="form-group">
         <label for="alamat_bandung">Alamat Bandung</label>
-        <input type="text" class="form-control" id="alamat_bandung">
+        <input type="text" class="form-control" name="alamat_bandung" id="alamat_bandung">
       </div>
       <div class="form-group">
         <label for="no_tlp">No Telepon</label>
-        <input type="text" class="form-control" id="no_tlp">
+        <input type="text" class="form-control" name="no_telp" id="no_telp" required>
       </div>
       <div class="form-group">
         <label for="no_tlp_lain">No Alternatif</label>
-        <input type="text" class="form-control" id="no_tlp_lain">
+        <input type="text" class="form-control" name="no_telp_lain" id="no_telp_lain">
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="text" class="form-control" id="email">
+        <input type="text" class="form-control" name="email" id="email">
       </div>
-
+      <div class="form-group">
+        <input type="submit" name="submit" value="Tambah Baru" class="submit-button">
+      </div>
+    </form>
   </div><!-- @end #w -->
 
 <script type="text/javascript" src="js/bootstrap.min.js"></script> 
