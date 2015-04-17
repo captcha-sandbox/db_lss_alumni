@@ -63,6 +63,7 @@
         else {
           while ($baris = mysql_fetch_assoc($r)) {
             
+              $id = $baris['id_alumni'];
               $nama = $baris['nama_lengkap'];
               $panggilan = $baris['nama_panggilan'];
               $jurusan = $baris['jurusan'];
@@ -96,7 +97,7 @@
       </section>
             
       <section id="settings" class="hidden">
-        <p>Edit detail info:</p>
+        <p><a href="edit_alumni.php?id=<?php echo $id; ?>">Edit detail info</a></p>
         
         <p class="setting"><span>Alamat Tetap <img src="images/edit.png" alt="*Edit*"></span><?php echo $alamat1; ?></p>
         
@@ -107,6 +108,7 @@
         <p class="setting"><span>No Telepon Lain <img src="images/edit.png" alt="*Edit*"></span><?php echo $telp2; ?></p>
         
         <p class="setting"><span>Email <img src="images/edit.png" alt="*Edit*"></span><?php echo $email; ?></p>
+
       </section>
       <?php
         mysql_close();
