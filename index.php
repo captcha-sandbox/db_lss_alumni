@@ -8,21 +8,8 @@
 
   <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
   <link rel="icon" href="http://designshack.net/favicon.ico">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-  <link href="css/jquery-ui-1.9.2.custom.min.css" rel='stylesheet' type='text/css' />
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
   <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
-
-  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
-  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
-  <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
-  <script>
-    $(function(){
-      $('#selectpicker').selectpicker({
-        style: 'btn-info',
-        size: 4
-      });
-    });
-  </script>
 
 </head>
 
@@ -46,29 +33,49 @@
     sql_connect('db_lss_alumni');
 
     //be sure to validate and clean your variables
-    $val1 = htmlentities($_GET['nama']);
-    $query = "SELECT * FROM alumni WHERE nama_lengkap LIKE '".$val1."%'";
+    $nama = "";
+    $panggilan = "-";
+    $jurusan = "-";
+    $angkatan = "-";
+    $alamat1 = "-";
+    $alamat2 = "-";
+    $telp1 = "-";
+    $telp2 = "-";
+    $email = "-";
+    if(isset($_GET['nama'])){
 
-    if($val1!=null) {
-      $r = mysql_query($query) or die($r."<br/><br/>".mysql_error());
-      if (mysql_num_rows($r)==0) {
-        $nama = "Data not found";
-      }
-      else {
-        while ($baris = mysql_fetch_assoc($r)) {
-          
-            $nama = $baris['nama_lengkap'];
-            $panggilan = $baris['nama_panggilan'];
-            $jurusan = $baris['jurusan'];
-            $angkatan = $baris['angkatan'];
-            $alamat1 = $baris['alamat_tetap'];
-            $alamat2 = $baris['alamat_bandung'];
-            $telp1 = $baris['no_telp'];
-            $telp2 = $baris['no_telp_lain'];
-            $email = $baris['email'];
+      $val1 = htmlentities($_GET['nama']);
+      $query = "SELECT * FROM alumni WHERE nama_lengkap LIKE '".$val1."%'";
+
+      if($val1!=null) {
+        $r = mysql_query($query) or die($r."<br/><br/>".mysql_error());
+        if (mysql_num_rows($r)==0) {
+          $nama = "Data not found";
+          $panggilan = "-";
+          $jurusan = "-";
+          $angkatan = "-";
+          $alamat1 = "-";
+          $alamat2 = "-";
+          $telp1 = "-";
+          $telp2 = "-";
+          $email = "-";
+        }
+        else {
+          while ($baris = mysql_fetch_assoc($r)) {
+            
+              $nama = $baris['nama_lengkap'];
+              $panggilan = $baris['nama_panggilan'];
+              $jurusan = $baris['jurusan'];
+              $angkatan = $baris['angkatan'];
+              $alamat1 = $baris['alamat_tetap'];
+              $alamat2 = $baris['alamat_bandung'];
+              $telp1 = $baris['no_telp'];
+              $telp2 = $baris['no_telp_lain'];
+              $email = $baris['email'];
+          }
         }
       }
-    }
+    }  
     ?>
 
     <div id="content" class="clearfix">
@@ -146,7 +153,9 @@
       </div>
 
   </div><!-- @end #w -->
- 
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>  
 <script type="text/javascript">
 $(function(){
   $('#profiletabs ul li a').on('click', function(e){
@@ -164,6 +173,5 @@ $(function(){
   });
 });
 </script>
-});
 </body>
 </html>
