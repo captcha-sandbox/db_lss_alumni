@@ -8,8 +8,12 @@
 
   <link rel="shortcut icon" href="http://designshack.net/favicon.ico">
   <link rel="icon" href="http://designshack.net/favicon.ico">
-   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
   <link rel="stylesheet" type="text/css" media="all" href="css/styles.css">
+
+  <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  
 
 </head>
 
@@ -86,7 +90,7 @@
       <nav id="profiletabs">
         <ul class="clearfix">
           <li><a href="#bio" class="sel">Bio</a></li>
-          <li><a href="#settings">Settings</a></li>
+          <li><a href="#settings">Details</a></li>
         </ul>
       </nav>
       
@@ -110,11 +114,8 @@
         <p class="setting"><span>Email <img src="images/edit.png" alt="*Edit*"></span><?php echo $email; ?></p>
 
       </section>
-      <?php
-        mysql_close();
-      ?>
     </div><!-- @end #content -->
-
+    <br>
     <h2>Tambahkan data baru</h2> 
     <form role="form" method="post" action="tambah_alumni.php">
       <div class="form-group">
@@ -126,13 +127,47 @@
         <input type="text" class="form-control" name="nama_panggilan" id="nama_panggilan">
       </div>
       <div class="form-group">
-        <label for="jurusan">Jurusan</label>
-        <input type="text" class="form-control" name="jurusan" id="jurusan" required>
+          <label for="jurusan">Jurusan</label><br/>
+          <div class="btn-group btn-input clearfix">
+            <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+              <span data-bind="label">Pilih jurusan</span>&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" id="prodi">
+       <?php
+        $q_jurusan = "SELECT nama_jurusan FROM jurusan";
+        $r = mysql_query($q_jurusan) or die($r."<br/><br/>".mysql_error());
+        while ($baris = mysql_fetch_assoc($r)) {
+          $jurusan = $baris['nama_jurusan'];
+      ?>        
+              <li><a href="#"><?php echo $jurusan; ?></a></li>
+      <?php }?>        
+            </ul>
+          </div>  
       </div>
-      <div class="form-group">
+      <input type="hidden" id="jurusan" name="jurusan">    
+      <!-- <div class="form-group">
         <label for="angkatan">Angkatan</label>
         <input type="text" class="form-control" name="angkatan" id="angkatan" required>
+      </div> -->
+      <div class="form-group">
+          <label for="angkatan">Angkatan</label><br/>
+          <div class="btn-group btn-input clearfix">
+            <button type="button" class="btn btn-default dropdown-toggle form-control" data-toggle="dropdown">
+              <span data-bind="label">Pilih angkatan</span>&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" id="tahun">
+       <?php
+        $q_angkatan = "SELECT angkatan FROM tahun";
+        $r = mysql_query($q_angkatan) or die($r."<br/><br/>".mysql_error());
+        while ($baris = mysql_fetch_assoc($r)) {
+          $angkatan = $baris['angkatan'];
+      ?>        
+              <li><a href="#"><?php echo $angkatan; ?></a></li>
+      <?php }?>        
+            </ul>
+          </div>  
       </div>
+      <input type="hidden" id="angkatan" name="angkatan">
       <div class="form-group">
         <label for="alamat_tetap">Alamat Tetap</label>
         <input type="text" class="form-control" name="alamat_tetap" id="alamat_tetap" required>
@@ -158,9 +193,27 @@
       </div>
     </form>
   </div><!-- @end #w -->
+  <?php
+    mysql_close();
+  ?>
+<script type="text/javascript">
+  $(document.body).on('click', '#tahun li', function(event) {
+      var $target = $(event.currentTarget);
 
-<script type="text/javascript" src="js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>  
+      $target.closest('.btn-group').find('[data-bind="label"]').text($target.text()).end().children('.dropdown-toggle').dropdown('toggle');
+      $('#angkatan').val($target.text());
+      return false;
+    });
+
+  $(document.body).on('click', '#prodi li', function(event) {
+      var $target = $(event.currentTarget);
+
+      $target.closest('.btn-group').find('[data-bind="label"]').text($target.text()).end().children('.dropdown-toggle').dropdown('toggle');
+      $('#jurusan').val($target.text());
+      return false;
+    });
+</script>
+
 <script type="text/javascript">
 $(function(){
   $('#profiletabs ul li a').on('click', function(e){
